@@ -1,0 +1,36 @@
+server:
+  port: 3300
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${instance-id:${random.value}}
+
+spring:
+  application:
+    name: uploader-service
+  devtools:
+    restart:
+      enabled: true
+
+oracleObjectStorage:
+#  privateKeyLocation : D:\\IIH-workspace\\File-Service\\new-public-private-key\\oci_api_key.pem
+  privateKeyLocation : /home/iihsolutions/oci_key/oci_api_key.pem
+  tenantId : ocid1.tenancy.oc1..aaaaaaaatd4ruv6b2di3yhedfect5b55w352xqinsjl4guoffamog2elppeq
+  userId : ocid1.user.oc1..aaaaaaaa64wcextb6cpxhvbtwejiuqxdiepct64uouu2feqhj2huy4khqgxa
+#  fingerprint : 91:b4:75:14:5c:1e:44:0c:ad:f8:79:67:72:5d:f5:43
+  fingerprint : ac:23:64:36:58:cd:b5:64:75:4c:24:4b:a6:d7:f5:c7
+  region : me-jeddah-1
+  nameSpace : ax1lc80zdsdj
+
+  cloudType: LOCAL
+
+file:
+  upload:
+    location:
+      BaseFolderPath : C:\\Users\\HP\\Desktop\\bucket\\
+spring-doc:
+  version: 1.0
+

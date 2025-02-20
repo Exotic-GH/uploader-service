@@ -1,0 +1,12 @@
+com\iih\healthcare\uploader\api\service\LocalStoreServiceImpl.class
+com\iih\healthcare\uploader\api\service\ObjectStoreFactory.class
+com\iih\healthcare\uploader\api\ui\model\GetObjectInfo.class
+com\iih\healthcare\uploader\api\ui\model\ObjectInfo.class
+com\iih\healthcare\uploader\api\ui\model\ErrorResponseModel.class
+com\iih\healthcare\uploader\api\ui\controller\UploaderController.class
+com\iih\healthcare\uploader\api\utils\CloudType.class
+com\iih\healthcare\uploader\api\UploaderServiceApplication.class
+com\iih\healthcare\uploader\api\config\OpenAPIConfiguration.class
+com\iih\healthcare\uploader\api\service\AwsObjectStoreServiceImpl.class
+com\iih\healthcare\uploader\api\service\UploaderService.class
+com\iih\healthcare\uploader\api\service\ObjectStoreService.class
