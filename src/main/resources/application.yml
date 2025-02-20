@@ -31,7 +31,7 @@ oracleObjectStorage:
 file:
   upload:
     location:
-      BaseFolderPath : /home/dev/bucket
+      BaseFolderPath : /home/dev/bucket/
 spring-doc:
   version: 1.0
 
