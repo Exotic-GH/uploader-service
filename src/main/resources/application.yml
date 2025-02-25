@@ -1,10 +1,11 @@
 server:
-  port: 3300
+  port: 0
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://213.199.61.44:8761/eureka
+
   instance:
     instance-id: ${spring.application.name}:${instance-id:${random.value}}
 
@@ -30,7 +31,7 @@ oracleObjectStorage:
 file:
   upload:
     location:
-      BaseFolderPath : C:\\Users\\HP\\Desktop\\bucket\\
+      BaseFolderPath : /home/dev/bucket/
 spring-doc:
   version: 1.0
 
