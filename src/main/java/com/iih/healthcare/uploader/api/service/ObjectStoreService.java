@@ -1,5 +1,6 @@
 package com.iih.healthcare.uploader.api.service;
 
+import com.iih.healthcare.uploader.api.ui.model.GetMultipleObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.GetObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.ObjectInfo;
 
@@ -27,6 +28,8 @@ public interface ObjectStoreService {
      * @return
      */
     byte[] getObject(GetObjectInfo getObjectInfo) throws Exception;
+
+    List<byte[]> getMultipleObject(GetMultipleObjectInfo getObjectInfo) throws Exception;
 
     /**
      * Get all file into object storage in a specific bucket

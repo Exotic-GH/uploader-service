@@ -1,5 +1,6 @@
 package com.iih.healthcare.uploader.api.service;
 
+import com.iih.healthcare.uploader.api.ui.model.GetMultipleObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.GetObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.ObjectInfo;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -100,6 +102,34 @@ public class LocalStoreServiceImpl implements ObjectStoreService {
             return Files.readAllBytes(filePath);
         }catch (Exception e){
             logger.error(e.getMessage(),e);
+            throw new Exception(e.getMessage());
+        }
+    }
+
+
+    @Override
+    public List<byte[]> getMultipleObject(GetMultipleObjectInfo getObjectInfo) throws Exception {
+        List<byte[]> fileContents = new ArrayList<>();
+
+        try {
+            String folderPath = getObjectInfo.getBucketName();
+
+            for (String fileName : getObjectInfo.getNameList()) {
+                // Construct the full path
+                Path filePath = Paths.get(baseFolderPath, folderPath, fileName);
+
+                // Check if the file exists
+                if (!Files.exists(filePath)) {
+                    throw new IOException("File not found: " + fileName);
+                }
+
+                // Read file into byte array and add to the list
+                fileContents.add(Files.readAllBytes(filePath));
+            }
+
+            return fileContents;
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
             throw new Exception(e.getMessage());
         }
     }

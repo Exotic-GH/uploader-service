@@ -1,6 +1,7 @@
 package com.iih.healthcare.uploader.api.ui.controller;
 
 import com.iih.healthcare.uploader.api.service.UploaderService;
+import com.iih.healthcare.uploader.api.ui.model.GetMultipleObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.GetObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.ObjectInfo;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v1/document")
@@ -47,6 +49,20 @@ public class UploaderController {
     @DeleteMapping
     public void deleteDocumentFromBucket(@RequestParam(name = "bucketName") String bucketName, @RequestParam(name = "fileName") String fileName) {
         uploaderService.deleteDocumentFromBucket(bucketName, fileName);
+    }
+
+
+    @Operation(summary = "Get Multiple uploaded documents")
+    @ApiResponse(responseCode = "200", description = "Document fetched successfully...")
+    @PostMapping(path = "/get_list")
+    public List<byte[]> getMultipleDocumentFromBucket(@RequestBody GetMultipleObjectInfo getObjectInfo) {
+        try{
+            return uploaderService.getMultipleDocumentFromBucket(getObjectInfo);
+        } catch (Exception e) {
+            LOGGER.error("Error wile trying to download the document");
+            LOGGER.error(e.getMessage(),e);
+            return null;
+        }
     }
 
 }

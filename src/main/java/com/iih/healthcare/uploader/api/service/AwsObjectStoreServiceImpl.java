@@ -1,5 +1,6 @@
 package com.iih.healthcare.uploader.api.service;
 
+import com.iih.healthcare.uploader.api.ui.model.GetMultipleObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.GetObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.ObjectInfo;
 
@@ -24,6 +25,11 @@ public class AwsObjectStoreServiceImpl implements ObjectStoreService{
 
     @Override
     public String deleteObject(String bucketName, String fileName) {
+        return null;
+    }
+
+    @Override
+    public List<byte[]> getMultipleObject(GetMultipleObjectInfo getObjectInfo) throws Exception {
         return null;
     }
 }

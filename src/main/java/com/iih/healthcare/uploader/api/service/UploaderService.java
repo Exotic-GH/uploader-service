@@ -1,6 +1,7 @@
 package com.iih.healthcare.uploader.api.service;
 
 import com.iih.healthcare.uploader.api.ui.controller.UploaderController;
+import com.iih.healthcare.uploader.api.ui.model.GetMultipleObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.GetObjectInfo;
 import com.iih.healthcare.uploader.api.ui.model.ObjectInfo;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class UploaderService {
@@ -45,6 +47,28 @@ public class UploaderService {
         try {
             byte[] response = objectStoreService.getObject(getObjectInfo);
             LOGGER.info("byte array returned. array size :{}", response.length);
+            return response;
+        } catch (IOException e){
+            throw new IOException(e.getMessage(),e);
+        } catch (Exception e) {
+            LOGGER.error("getDocumentFromBucket");
+            LOGGER.error(e.getMessage(),e);
+            throw new RuntimeException(e.getMessage(),e);
+        }
+    }
+
+
+    /**
+     * method for get Multiple document from object storage
+     *
+     * @param getObjectInfo
+     * @return
+     */
+    public List<byte[]> getMultipleDocumentFromBucket(GetMultipleObjectInfo getObjectInfo) throws IOException {
+        ObjectStoreService objectStoreService = objectStoreFactory.creatObjectStore(cloudType);
+        try {
+            List<byte[]> response = objectStoreService.getMultipleObject(getObjectInfo);
+            LOGGER.info("byte array returned. array size :{}", response.size());
             return response;
         } catch (IOException e){
             throw new IOException(e.getMessage(),e);
